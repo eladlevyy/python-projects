@@ -100,9 +100,12 @@ export function AuthSuccess({
     <SingleActionLayout
       title="Welcome to Mind Vitality!"
       subtitle="You have successfully signed in"
-      currentStep={2}
-      totalSteps={2}
-      showBackButton={false}
+      steps={[
+        { id: 'email', title: 'Enter Email', status: 'completed' },
+        { id: 'verify', title: 'Sign In Complete', status: 'completed' }
+      ]}
+      currentStepId="verify"
+      showProgress={true}
       className="text-center"
     >
       <div className="w-full max-w-md space-y-8">
@@ -283,3 +286,4 @@ export function AuthSuccess({
     </SingleActionLayout>
   );
 }
+
