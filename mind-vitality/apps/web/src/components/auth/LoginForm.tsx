@@ -113,9 +113,12 @@ export function LoginForm({ onSuccess, onError, returnTo }: LoginFormProps) {
     <SingleActionLayout
       title="Sign In to Mind Vitality"
       subtitle="Enter your email to receive a secure sign-in link"
-      currentStep={1}
-      totalSteps={2}
-      onBack={undefined}
+      steps={[
+        { id: 'email', title: 'Enter Email', status: 'current' },
+        { id: 'verify', title: 'Verify Code', status: 'pending' }
+      ]}
+      currentStepId="email"
+      showProgress={true}
     >
       <form onSubmit={handleSubmit} className="w-full max-w-md space-y-8">
         {/* Email Input Section */}
@@ -222,3 +225,4 @@ export function LoginForm({ onSuccess, onError, returnTo }: LoginFormProps) {
     </SingleActionLayout>
   );
 }
+
