@@ -10,7 +10,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // Simple placeholder implementation
 // This will be replaced with proper Auth0 handlers once the SDK imports are resolved
-export async function GET(request: NextRequest, { params }: { params: { auth0: string } }) {
+export async function GET(
+  request: NextRequest, 
+  context: { params: Promise<{ auth0: string }> }
+) {
+  const params = await context.params;
   const { auth0: route } = params;
   
   // Handle different auth routes
@@ -94,6 +98,7 @@ export async function POST(request: NextRequest) {
  *    - Navigate to /api/auth/login
  *    - Complete the passwordless flow
  */
+
 
 
 
