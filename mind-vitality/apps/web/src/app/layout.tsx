@@ -138,15 +138,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
           Skip to main content
         </a>
 
-        {/* Audio narration context provider */}
-        <AudioNarrationProvider>
-          {/* Main layout wrapper */}
-          <MainLayout>
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-          </MainLayout>
-        </AudioNarrationProvider>
+        {/* Auth0 authentication provider */}
+        <AuthProvider>
+          {/* Audio narration context provider */}
+          <AudioNarrationProvider>
+            {/* Main layout wrapper */}
+            <MainLayout>
+              <main id="main-content" className="flex-1">
+                {children}
+              </main>
+            </MainLayout>
+          </AudioNarrationProvider>
+        </AuthProvider>
 
         {/* Screen reader announcements */}
         <div
@@ -159,4 +162,5 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
+
 
