@@ -213,11 +213,19 @@ export function VerificationCodeInput({
     <SingleActionLayout
       title="Enter Verification Code"
       subtitle={`We sent a ${codeLength}-digit code to ${email}`}
-      currentStep={2}
-      totalSteps={2}
-      onBack={() => {
-        announceNavigation('Going back to email entry');
-        // Handle back navigation
+      steps={[
+        { id: 'email', title: 'Enter Email', status: 'completed' },
+        { id: 'verify', title: 'Verify Code', status: 'current' }
+      ]}
+      currentStepId="verify"
+      showProgress={true}
+      secondaryAction={{
+        label: 'Go Back',
+        onClick: () => {
+          announceNavigation('Going back to email entry');
+          // Handle back navigation
+        },
+        variant: 'outline'
       }}
     >
       <form onSubmit={handleSubmit} className="w-full max-w-md space-y-8">
@@ -352,3 +360,4 @@ export function VerificationCodeInput({
     </SingleActionLayout>
   );
 }
+
