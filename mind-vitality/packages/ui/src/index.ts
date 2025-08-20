@@ -7,19 +7,16 @@
 // Note: These components will be implemented in Task 2
 // For now, we export placeholder types and basic structure
 
-// Re-export types from @mind-vitality/types for convenience
+// Re-export utilities from @mind-vitality/utils for convenience
+export { cn } from '@mind-vitality/utils';
+
+// Re-export base types from @mind-vitality/types for convenience
 export type {
-  ButtonProps,
-  IconButtonProps,
-  LogoProps,
   ButtonVariant,
   ButtonSize,
   IconButtonVariant,
   LogoVariant
 } from '@mind-vitality/types';
-
-// Re-export utilities from @mind-vitality/utils for convenience
-export { cn } from '@mind-vitality/utils';
 
 // ===== COMPONENT EXPORTS =====
 // Actual component implementations
@@ -279,4 +276,5 @@ export const packageInfo = {
     'Screen reader compatibility'
   ],
 } as const;
+
 
