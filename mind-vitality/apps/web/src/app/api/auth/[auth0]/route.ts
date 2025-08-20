@@ -108,3 +108,4 @@ export const GET = handleAuth({
  * This could be extended for custom authentication flows if needed
  */
 export const POST = handleAuth();
+
