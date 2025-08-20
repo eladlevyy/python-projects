@@ -225,8 +225,12 @@ export interface AppSettings {
   autoSave: boolean;
 }
 
-// Re-export commonly used React types for convenience
-export type { ReactNode, ReactElement, ComponentProps } from 'react';
+// ===== GENERIC TYPES =====
+// Generic types that don't depend on React
+export type ReactNodeLike = any;
+export type ReactElementLike = any;
+export type ComponentPropsLike<T = any> = T;
+
 
 
 
