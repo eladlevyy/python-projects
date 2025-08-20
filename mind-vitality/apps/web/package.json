@@ -12,6 +12,7 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^4.9.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -23,20 +24,20 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "framer-motion": "^11.0.8",
-    "zustand": "^4.5.2",
     "next": "^15.0.0",
     "next-pwa": "^5.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "clsx": "^2.1.0",
     "tailwind-merge": "^2.2.2",
-    "class-variance-authority": "^0.7.0"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",
@@ -52,4 +53,3 @@
     "typescript": "^5.4.2"
   }
 }
-
