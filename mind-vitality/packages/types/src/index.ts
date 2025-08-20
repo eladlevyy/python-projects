@@ -70,7 +70,7 @@ export type IconButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type LogoVariant = 'icon' | 'text' | 'full';
 
 export interface ButtonProps {
-  children: React.ReactNode;
+  children: any; // ReactNode equivalent without React dependency
   onClick?: () => void;
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -82,7 +82,7 @@ export interface ButtonProps {
 }
 
 export interface IconButtonProps {
-  children: React.ReactNode;
+  children: any; // ReactNode equivalent without React dependency
   onClick?: () => void;
   'aria-label': string;
   variant?: IconButtonVariant;
@@ -227,3 +227,4 @@ export interface AppSettings {
 
 // Re-export commonly used React types for convenience
 export type { ReactNode, ReactElement, ComponentProps } from 'react';
+
