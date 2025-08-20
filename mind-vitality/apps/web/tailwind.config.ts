@@ -125,7 +125,7 @@ const config: Config = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     // Custom plugin for accessibility utilities
-    function({ addUtilities }) {
+    function({ addUtilities }: { addUtilities: any }) {
       const newUtilities = {
         '.tap-target': {
           minWidth: '44px',
@@ -167,3 +167,4 @@ const config: Config = {
 }
 
 export default config
+
