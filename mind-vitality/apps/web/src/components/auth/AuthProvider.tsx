@@ -39,8 +39,6 @@ const AuthContext = React.createContext<{
  * - Placeholder for future Auth0 UserProvider integration
  */
 export function AuthProvider({ children }: AuthProviderWrapperProps) {
-  const { announceError } = useAudioNarrationContext();
-  
   // Placeholder auth state - will be replaced with Auth0 integration
   const [authState] = React.useState({
     user: null,
@@ -242,6 +240,7 @@ export function withAuthRequired<T extends {}>(
   AuthRequiredComponent.displayName = `withAuthRequired(${Component.displayName || Component.name})`;
   return AuthRequiredComponent;
 }
+
 
 
 
