@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { AudioNarrationProvider } from '@/components/layout/AudioNarrationProvider';
+import { AuthProvider } from '@/components/auth/AuthProvider';
 import { MainLayout } from '@/components/layout/MainLayout';
 import './globals.css';
 
@@ -158,3 +159,4 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
+
