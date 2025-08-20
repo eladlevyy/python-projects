@@ -54,6 +54,27 @@ export type { IconButtonProps } from './components/IconButton';
 export { Logo, logoVariants, logoIconVariants } from './components/Logo';
 export type { LogoProps } from './components/Logo';
 
+/**
+ * Error handling components with senior-friendly design and audio feedback
+ * - WCAG 2.2 AA compliant error display
+ * - Audio narration integration for error announcements
+ * - Senior-friendly error messages with clear instructions
+ * - High contrast visual indicators and large tap targets
+ * - Proper ARIA live regions for screen reader announcements
+ */
+export { 
+  ErrorBoundary, 
+  useErrorBoundary, 
+  withErrorBoundary 
+} from './components/ErrorBoundary';
+
+export { 
+  ErrorMessage, 
+  InlineErrorMessage, 
+  errorMessageVariants, 
+  errorIconVariants 
+} from './components/ErrorMessage';
+
 // ===== DESIGN SYSTEM EXPORTS =====
 // Export design tokens and utilities that components will use
 
@@ -276,6 +297,7 @@ export const packageInfo = {
     'Screen reader compatibility'
   ],
 } as const;
+
 
 
 
