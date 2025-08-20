@@ -1,0 +1,40 @@
+{
+  "name": "@mind-vitality/types",
+  "version": "0.1.0",
+  "description": "TypeScript type definitions and interfaces for Mind Vitality",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix"
+  },
+  "keywords": [
+    "types",
+    "typescript",
+    "mind-vitality",
+    "cognitive-training"
+  ],
+  "author": "Mind Vitality Team",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
