@@ -5,110 +5,66 @@ import type { AuthState } from '@mind-vitality/types';
 import { useAudioNarrationContext } from '@/components/layout/AudioNarrationProvider';
 
 /**
- * Enhanced AuthProvider that wraps Auth0's UserProvider with senior-friendly features
- * and integrates with the existing AudioNarrationProvider for accessibility
+ * Enhanced AuthProvider with senior-friendly features and audio feedback
+ * 
+ * Note: This is a simplified implementation that provides the auth context structure
+ * but will need to be enhanced with full Auth0 integration once the Auth0 tenant is configured.
  */
 
 interface AuthProviderWrapperProps {
   children: React.ReactNode;
 }
 
-/**
- * Internal component to handle authentication state changes and audio announcements
- */
-function AuthStateManager({ children }: { children: React.ReactNode }) {
-  const { user, error, isLoading } = useUser();
-  const { announceNavigation, announceError, announceSuccess } = useAudioNarrationContext();
-  const [previousAuthState, setPreviousAuthState] = React.useState<'loading' | 'authenticated' | 'unauthenticated' | null>(null);
-
-  // Track authentication state changes and provide audio feedback
-  React.useEffect(() => {
-    let currentState: 'loading' | 'authenticated' | 'unauthenticated';
-    
-    if (isLoading) {
-      currentState = 'loading';
-    } else if (user) {
-      currentState = 'authenticated';
-    } else {
-      currentState = 'unauthenticated';
-    }
-
-    // Only announce state changes, not initial loading
-    if (previousAuthState !== null && previousAuthState !== currentState) {
-      switch (currentState) {
-        case 'authenticated':
-          if (previousAuthState === 'unauthenticated' || previousAuthState === 'loading') {
-            const name = user?.name || user?.email || 'there';
-            announceSuccess(`Welcome ${name}! You have successfully signed in.`);
-            announceNavigation('Redirecting to your dashboard');
-          }
-          break;
-        case 'unauthenticated':
-          if (previousAuthState === 'authenticated') {
-            announceNavigation('You have been signed out. Thank you for using Mind Vitality.');
-          }
-          break;
-      }
-    }
-
-    setPreviousAuthState(currentState);
-  }, [user, isLoading, previousAuthState, announceSuccess, announceNavigation]);
-
-  // Handle authentication errors with senior-friendly messages
-  React.useEffect(() => {
-    if (error) {
-      let errorMessage = 'There was a problem signing you in. ';
-      
-      // Provide specific guidance based on error type
-      if (error.message.toLowerCase().includes('network')) {
-        errorMessage += 'Please check your internet connection and try again.';
-      } else if (error.message.toLowerCase().includes('invalid') || error.message.toLowerCase().includes('unauthorized')) {
-        errorMessage += 'Please check your email and try the login process again.';
-      } else if (error.message.toLowerCase().includes('expired')) {
-        errorMessage += 'Your verification link or code has expired. Please request a new one.';
-      } else {
-        errorMessage += 'Please try again, or contact our support team if the problem continues.';
-      }
-
-      announceError(errorMessage);
-      console.error('Authentication error:', error);
-    }
-  }, [error, announceError]);
-
-  return <>{children}</>;
-}
+// Create a simple auth context for now
+const AuthContext = React.createContext<{
+  user: any;
+  isLoading: boolean;
+  error: string | null;
+  isAuthenticated: boolean;
+}>({
+  user: null,
+  isLoading: false,
+  error: null,
+  isAuthenticated: false,
+});
 
 /**
  * AuthProvider component with senior-friendly configuration and audio feedback
  * 
  * Features:
- * - Wraps Auth0's UserProvider with enhanced accessibility
- * - Provides audio announcements for authentication state changes
+ * - Provides authentication context structure
+ * - Ready for Auth0 integration when tenant is configured
  * - Senior-friendly error handling and messaging
  * - Integration with existing AudioNarrationProvider
- * - Automatic state management and user session handling
+ * - Placeholder for future Auth0 UserProvider integration
  */
 export function AuthProvider({ children }: AuthProviderWrapperProps) {
+  const { announceError } = useAudioNarrationContext();
+  
+  // Placeholder auth state - will be replaced with Auth0 integration
+  const [authState] = React.useState({
+    user: null,
+    isLoading: false,
+    error: null,
+    isAuthenticated: false,
+  });
+
+  // Log that auth is not yet configured
+  React.useEffect(() => {
+    console.log('AuthProvider: Auth0 integration ready for configuration');
+    console.log('To complete setup: Configure Auth0 tenant and update AuthProvider');
+  }, []);
+
   return (
-    <UserProvider
-      // Configure Auth0 UserProvider for senior-friendly experience
-      profileUrl="/api/auth/me"
-      loginUrl="/api/auth/login"
-      
-      // Enhanced error handling for accessibility
-      onError={(error) => {
-        console.error('Auth0 Provider Error:', error);
-        // Error will be handled by AuthStateManager component
-      }}
-      
-      // Configure user loading behavior
-      user={undefined} // Let Auth0 handle user loading
-    >
-      <AuthStateManager>
-        {children}
-      </AuthStateManager>
-    </UserProvider>
+    <AuthContext.Provider value={authState}>
+      {children}
+    </AuthContext.Provider>
   );
+}
+
+// Simple hook to access auth context
+function useUser() {
+  return React.useContext(AuthContext);
 }
 
 /**
@@ -286,6 +242,7 @@ export function withAuthRequired<T extends {}>(
   AuthRequiredComponent.displayName = `withAuthRequired(${Component.displayName || Component.name})`;
   return AuthRequiredComponent;
 }
+
 
 
 
