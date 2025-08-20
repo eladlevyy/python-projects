@@ -175,7 +175,7 @@ export type ErrorSeverity = 'low' | 'medium' | 'high' | 'critical';
 export interface ErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
-  errorInfo: React.ErrorInfo | null;
+  errorInfo: any | null; // ErrorInfo equivalent without React dependency
 }
 
 // ===== API RESPONSE TYPES =====
@@ -227,4 +227,5 @@ export interface AppSettings {
 
 // Re-export commonly used React types for convenience
 export type { ReactNode, ReactElement, ComponentProps } from 'react';
+
 
