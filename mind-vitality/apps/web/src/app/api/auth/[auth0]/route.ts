@@ -1,4 +1,4 @@
-import { handleAuth, handleLogin, handleLogout, handleCallback } from '@auth0/nextjs-auth0';
+import { handleAuth, handleLogin, handleLogout, handleCallback } from '@auth0/nextjs-auth0/edge';
 
 /**
  * Auth0 API routes for Mind Vitality
@@ -108,4 +108,5 @@ export const GET = handleAuth({
  * This could be extended for custom authentication flows if needed
  */
 export const POST = handleAuth();
+
 
