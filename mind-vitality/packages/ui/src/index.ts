@@ -21,32 +21,41 @@ export type {
 // Re-export utilities from @mind-vitality/utils for convenience
 export { cn } from '@mind-vitality/utils';
 
-// ===== COMPONENT PLACEHOLDERS =====
-// These will be replaced with actual implementations in Task 2
+// ===== COMPONENT EXPORTS =====
+// Actual component implementations
 
 /**
- * Button component - Will be implemented in Task 2
- * Senior-friendly button with WCAG 2.2 AA compliance
+ * Button component with senior-friendly design and accessibility features
+ * - Minimum 44x44px tap targets (WCAG 2.2 AA)
+ * - High contrast colors with proper focus states
+ * - Audio narration support for screen readers
+ * - Large, clear typography
+ * - Enhanced touch interaction feedback
  */
-export function Button() {
-  throw new Error('Button component not yet implemented. Will be created in Task 2.');
-}
+export { Button, buttonVariants } from './components/Button';
+export type { ButtonProps } from './components/Button';
 
 /**
- * IconButton component - Will be implemented in Task 2
- * Accessible icon button with minimum 44x44px tap targets
+ * IconButton component with senior-friendly design and accessibility features
+ * - Minimum 44x44px tap targets (WCAG 2.2 AA)
+ * - Required aria-label for screen readers
+ * - High contrast colors with proper focus states
+ * - Audio narration support
+ * - Enhanced touch interaction feedback
  */
-export function IconButton() {
-  throw new Error('IconButton component not yet implemented. Will be created in Task 2.');
-}
+export { IconButton, iconButtonVariants } from './components/IconButton';
+export type { IconButtonProps } from './components/IconButton';
 
 /**
- * Logo component - Will be implemented in Task 2
- * Mind Vitality logo with multiple size variants
+ * Logo component with senior-friendly design and accessibility features
+ * - Scalable sizes from small to extra large
+ * - High contrast brand colors
+ * - Multiple variants: icon-only, text-only, or full logo
+ * - Optional interactive mode with audio narration
+ * - Semantic markup for screen readers
  */
-export function Logo() {
-  throw new Error('Logo component not yet implemented. Will be created in Task 2.');
-}
+export { Logo, logoVariants, logoIconVariants } from './components/Logo';
+export type { LogoProps } from './components/Logo';
 
 // ===== DESIGN SYSTEM EXPORTS =====
 // Export design tokens and utilities that components will use
@@ -270,3 +279,4 @@ export const packageInfo = {
     'Screen reader compatibility'
   ],
 } as const;
+
