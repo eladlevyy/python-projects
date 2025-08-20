@@ -199,7 +199,7 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
 
 // ===== LAYOUT TYPES =====
 export interface MainLayoutProps {
-  children: React.ReactNode;
+  children: any; // ReactNode equivalent without React dependency
   title?: string;
   description?: string;
   showNavigation?: boolean;
@@ -227,5 +227,6 @@ export interface AppSettings {
 
 // Re-export commonly used React types for convenience
 export type { ReactNode, ReactElement, ComponentProps } from 'react';
+
 
 
