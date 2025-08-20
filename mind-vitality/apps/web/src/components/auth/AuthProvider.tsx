@@ -69,7 +69,7 @@ function useUser() {
 
 /**
  * Custom hook that provides enhanced authentication state with senior-friendly features
- * This extends Auth0's useUser hook with additional accessibility and UX improvements
+ * This will be enhanced with full Auth0 integration once the Auth0 tenant is configured
  */
 export function useAuth(): AuthState & {
   // Auth0 standard properties
@@ -81,14 +81,14 @@ export function useAuth(): AuthState & {
   logoutWithAudio: (options?: { returnTo?: string; [key: string]: any }) => void;
   announceAuthStatus: () => void;
 } {
-  const { user, error, isLoading } = useUser();
+  const { user, error, isLoading, isAuthenticated } = useUser();
   const { announceNavigation, announceInstruction, announceButtonAction } = useAudioNarrationContext();
 
   // Enhanced login with audio guidance
   const loginWithAudio = React.useCallback((options?: { returnTo?: string; [key: string]: any }) => {
     announceInstruction('Redirecting you to the secure login page. You will receive an email with a link to sign in.');
     
-    // Redirect to Auth0 login
+    // Redirect to Auth0 login (will be functional once Auth0 is configured)
     window.location.href = `/api/auth/login${options?.returnTo ? `?returnTo=${encodeURIComponent(options.returnTo)}` : ''}`;
   }, [announceInstruction]);
 
@@ -96,7 +96,7 @@ export function useAuth(): AuthState & {
   const logoutWithAudio = React.useCallback((options?: { returnTo?: string; [key: string]: any }) => {
     announceButtonAction('Signing you out and returning to the home page.');
     
-    // Redirect to Auth0 logout
+    // Redirect to Auth0 logout (will be functional once Auth0 is configured)
     window.location.href = `/api/auth/logout${options?.returnTo ? `?returnTo=${encodeURIComponent(options.returnTo)}` : ''}`;
   }, [announceButtonAction]);
 
@@ -125,7 +125,7 @@ export function useAuth(): AuthState & {
   return {
     // AuthState properties (compatible with existing types)
     user: user ? {
-      id: user.sub || '',
+      id: user.sub || user.id || '',
       email: user.email || '',
       name: user.name,
       dateOfBirth: user.date_of_birth,
@@ -134,8 +134,8 @@ export function useAuth(): AuthState & {
       updatedAt: user.updated_at || new Date().toISOString(),
     } : null,
     isLoading,
-    isAuthenticated: !!user && !isLoading,
-    error: error?.message || null,
+    isAuthenticated,
+    error: error || null,
     
     // Auth0 methods
     login,
@@ -242,6 +242,7 @@ export function withAuthRequired<T extends {}>(
   AuthRequiredComponent.displayName = `withAuthRequired(${Component.displayName || Component.name})`;
   return AuthRequiredComponent;
 }
+
 
 
 
