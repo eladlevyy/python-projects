@@ -218,9 +218,11 @@ Thank you!`
     <SingleActionLayout
       title={errorInfo.title}
       subtitle="Don't worry, we can help you get signed in"
-      currentStep={1}
-      totalSteps={1}
-      showBackButton={false}
+      steps={[
+        { id: 'error', title: 'Sign-In Error', status: 'error' }
+      ]}
+      currentStepId="error"
+      showProgress={false}
       className="text-center"
     >
       <div className="w-full max-w-md space-y-8">
@@ -411,3 +413,4 @@ Thank you!`
     </SingleActionLayout>
   );
 }
+
