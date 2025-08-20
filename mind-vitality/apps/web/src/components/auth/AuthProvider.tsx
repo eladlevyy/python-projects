@@ -1,6 +1,6 @@
 'use client';
 
-import { UserProvider, useUser } from '@auth0/nextjs-auth0';
+import { UserProvider, useUser } from '@auth0/nextjs-auth0/client';
 import React from 'react';
 import type { AuthState } from '@mind-vitality/types';
 import { useAudioNarrationContext } from '@/components/layout/AudioNarrationProvider';
@@ -287,4 +287,5 @@ export function withAuthRequired<T extends {}>(
   AuthRequiredComponent.displayName = `withAuthRequired(${Component.displayName || Component.name})`;
   return AuthRequiredComponent;
 }
+
 
