@@ -80,7 +80,20 @@ export function useAuth(): AuthState & {
   announceAuthStatus: () => void;
 } {
   const { user, error, isLoading, isAuthenticated } = useUser();
-  const { announceNavigation, announceInstruction, announceButtonAction } = useAudioNarrationContext();
+  
+  // Safely access audio narration context (might not be available during SSR)
+  let announceNavigation, announceInstruction, announceButtonAction;
+  try {
+    const audioContext = useAudioNarrationContext();
+    announceNavigation = audioContext.announceNavigation;
+    announceInstruction = audioContext.announceInstruction;
+    announceButtonAction = audioContext.announceButtonAction;
+  } catch {
+    // Fallback functions for when audio context is not available
+    announceNavigation = (message: string) => console.log('Audio:', message);
+    announceInstruction = (message: string) => console.log('Audio:', message);
+    announceButtonAction = (message: string) => console.log('Audio:', message);
+  }
 
   // Enhanced login with audio guidance
   const loginWithAudio = React.useCallback((options?: { returnTo?: string; [key: string]: any }) => {
@@ -240,6 +253,7 @@ export function withAuthRequired<T extends {}>(
   AuthRequiredComponent.displayName = `withAuthRequired(${Component.displayName || Component.name})`;
   return AuthRequiredComponent;
 }
+
 
 
 
