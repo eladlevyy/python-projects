@@ -1,0 +1,74 @@
+{
+  "name": "mind-vitality",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Brain exercises for older adults - engaging cognitive training with senior-friendly design",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,md,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,tsx,json,md,yaml,yml}\"",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish",
+    "pre-commit": "lint-staged",
+    "prepare": "husky install",
+    "web:dev": "pnpm --filter web dev",
+    "api:dev": "pnpm --filter api dev",
+    "ml-service:dev": "pnpm --filter ml-service dev",
+    "db:generate": "pnpm --filter database generate",
+    "db:push": "pnpm --filter database push",
+    "db:migrate": "pnpm --filter database migrate",
+    "db:studio": "pnpm --filter database studio"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.1",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "turbo": "^1.12.5",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "pnpm@10.15.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,json,md,yaml,yml}": [
+      "prettier --write"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "keywords": [
+    "cognitive-training",
+    "brain-exercises",
+    "seniors",
+    "accessibility",
+    "healthcare",
+    "wellness"
+  ],
+  "author": "Mind Vitality Team",
+  "license": "UNLICENSED"
+}

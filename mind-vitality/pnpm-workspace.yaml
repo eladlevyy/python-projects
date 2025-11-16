@@ -1,0 +1,6 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Enable shared lockfile across all packages
+prefer-workspace-packages: true
